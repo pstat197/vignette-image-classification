@@ -1,1 +1,7 @@
-data_sample
+# Ignore the large dataset directory
+data/
+dataset/
+images/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
