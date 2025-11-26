@@ -1,6 +1,7 @@
 # Ignore the large dataset directory
 data/
 dataset/
+data_sample/
 images/
 __pycache__/
 *.pyc
