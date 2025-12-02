@@ -18,19 +18,17 @@ class ImageDataset(Dataset):
     def __getitem__(self, idx):
         return self.X[idx], self.y[idx]
 
-def train(model, train_loader, val_loader, epochs=10, lr=3e-4, device='cuda', 
+def train(model, train_loader, val_loader, epochs=5, lr=3e-4, device='mps', 
           checkpoint_dir='checkpoints', resume_from=None):
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=0.1)
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
     
     start_epoch = 0
     if resume_from and os.path.exists(resume_from):
         checkpoint = torch.load(resume_from)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
     
     os.makedirs(checkpoint_dir, exist_ok=True)
@@ -40,6 +38,7 @@ def train(model, train_loader, val_loader, epochs=10, lr=3e-4, device='cuda',
         train_loss = 0.0
         train_correct = 0
         train_total = 0
+        batch_count = 0
         
         for X, y in train_loader:
             X, y = X.to(device), y.to(device)
@@ -53,8 +52,9 @@ def train(model, train_loader, val_loader, epochs=10, lr=3e-4, device='cuda',
             _, predicted = outputs.max(1)
             train_total += y.size(0)
             train_correct += predicted.eq(y).sum().item()
-        
-        scheduler.step()
+            batch_count += 1
+            if batch_count % 100 == 0:
+                print(f'  Batch {batch_count}/{len(train_loader)}')
         
         model.eval()
         val_loss = 0.0
@@ -83,7 +83,6 @@ def train(model, train_loader, val_loader, epochs=10, lr=3e-4, device='cuda',
             'epoch': epoch,
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
-            'scheduler_state_dict': scheduler.state_dict(),
             'train_acc': train_acc,
             'val_acc': val_acc,
         }, checkpoint_path)
@@ -99,12 +98,12 @@ if __name__ == '__main__':
     train_dataset = ImageDataset(X[train_idx], y[train_idx])
     val_dataset = ImageDataset(X[val_idx], y[val_idx])
     
-    train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=0)
+    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=0)
     
     model = VisionTransformer(img_size=224, patch_size=16, num_classes=2, 
-                              embed_dim=768, depth=12, num_heads=12)
+                              embed_dim=384, depth=6, num_heads=6)
     
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    train(model, train_loader, val_loader, epochs=50, device=device)
+    device = 'mps' if torch.backends.mps.is_available() else 'cuda' if torch.cuda.is_available() else 'cpu'
+    train(model, train_loader, val_loader, epochs=5, device=device)
 
