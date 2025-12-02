@@ -6,3 +6,6 @@ images/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+/.venv/
+/data_sample/
+/data_dl/
