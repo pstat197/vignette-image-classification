@@ -1,8 +1,15 @@
 # vignette-image-classification
 
-## XGBoost and SVM baseline models
+## XGBoost and SVM baseline models for image classification
 
-The preprocessing script contains two functions. The first function preprocesses the data to be used for classical models such as XGBoost and Support Vector Machine.
+### Purpose of this branch
+- Implement image preprocessing for classical ML models  
+- Train and evaluate **XGBoost** and **SVM** models on flattened image data  
+- Produce accuracy values and confusion matrices
+    - Conclude that these models serve as baseline models and do not effectively capture spatial patterns (edges, textures, shapes) as effectively as CNNs or vision transformers
+    - Segue into deep learning models
 
-The function prepare_ml_data Loads images, resizes them to 64×64, normalizes pixel values, and flattens each image into a 1D feature vector, producing a 2D feature matrix X.
-
+Note: 
+The datasets are too large for github, so they are not included in this repository. 
+Please download the dataset separately from the official source (e.g., Kaggle Cats vs Dogs).  
+Place the images in a local `data/` directory before running the notebook.  
