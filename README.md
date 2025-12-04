@@ -1,5 +1,24 @@
 # vignette-image-classification
 
-## CNN Model
+## Convolutional Neural Network (CNN)
 
-Based on our implementation and training results, one of the models we used was an improved Convolutional Neural Network (CNN) for image classification. CNNs rely on convolutional layers that progressively extract hierarchical features from images—starting from simple edges and textures to more complex shapes and object patterns. This layered, spatially local approach allows CNNs to perform exceptionally well on visual tasks, even with relatively small datasets. In our experiments, the improved CNN architecture incorporated multiple convolutional and pooling layers, data augmentation, dropout for regularization, and early stopping to prevent overfitting. Compared to the earlier baseline model, the improved CNN showed higher stability and reproducibility across runs, maintaining consistent training accuracies between 91–100% and validation accuracies of 100% on the small validation set. However, when evaluated on the unseen test data, the model achieved 50% accuracy, suggesting that while the CNN effectively memorized patterns from the limited training samples, it struggled to generalize due to the small dataset size. Overall, the improved CNN demonstrates strong learning capacity and efficient convergence, but highlights the importance of using a larger and more diverse dataset to achieve robust real-world performance.
+### Overview
+We implemented an improved CNN architecture designed to capture hierarchical visual features. This model serves as our deep learning baseline, with a balance between computational efficiency and learning capacity.
+
+### Model Features & Improvements
+* CNNs rely on convolutional layers that progressively extract hierarchical features from images, starting from simple edges and textures to more complex shapes and object patterns. This layered, spatially local approach allows CNNs to perform exceptionally well on visual tasks, even with relatively small datasets. 
+
+* Our improved CNN incorporated multiple convolutional and pooling layers, data augmentation, dropout for regularization, and early stopping to prevent overfitting. 
+
+### Performance
+* Training Accuracy: We trained the model for 5 epochs using a batch size of 32. The model showed healthy convergence, with training accuracy rising to 77.35% and validation accuracy reaching 79.14%. The fact that validation accuracy tracks closely with (or slightly exceeds) training accuracy suggests our regularization techniques prevented overfitting.
+
+* Test Accuracy: When evaluated on the held-out test set of 5,000 images, the model achieved an overall accuracy of 79.90%.
+
+* Class Balance: The model performs symmetrically, though slightly differently per class:
+
+    * Cats: Higher Recall (0.83) — The model is better at finding cats and misses fewer of them.
+
+    * Dogs: Higher Precision (0.82) — When the model predicts "Dog," it is more likely to be correct, though it misses some actual dogs (Recall 0.77).
+
+* Summary: Achieving ~80% accuracy in just 5 epochs highlights the efficiency of CNN for image tasks, though a ~20% error rate suggests there is still room for improvement compared to state-of-the-art Vision Transformers.
