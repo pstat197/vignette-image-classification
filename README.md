@@ -30,6 +30,45 @@ We implemented an improved CNN architecture designed to capture hierarchical vis
 
 * Summary: Achieving ~80% accuracy in just 5 epochs highlights the efficiency of CNN for image tasks, though a ~20% error rate suggests there is still room for improvement compared to state-of-the-art Vision Transformers.
 
+## Vision Transformer (ViT)
+
+* Based on Google’s paper **“An Image is Worth 16×16 Words”**, we selected the Vision Transformer (ViT) as one of our models.
+* ViT uses neural networks like CNNs but relies on the **transformer architecture**, where **self-attention** allows the model to analyze an image holistically rather than through layered convolutions.
+
+### Advantages
+* When **pretrained**, ViT achieves performance comparable to CNNs while using **less compute**.
+* Excels at capturing **long-range dependencies** and global relationships in images.
+
+### Limitations
+* Requires **much more training data** than CNNs when trained from scratch.
+* In our experiments, a ViT trained from scratch reached **~66% accuracy**, while the **pretrained model reached ~97%**.
+
+### Data Processing & Training Pipeline
+
+#### Image Preprocessing
+* Converted raw cat and dog image files into NumPy arrays using a custom preprocessing function.
+* Standardized the images so they were ready for PyTorch input.
+
+#### Train/Test Split
+* Split the dataset into 80% training and 20% testing.
+* Used stratified sampling to maintain balanced proportions of cats and dogs across both sets.
+
+#### PyTorch Pipeline Setup
+* Wrapped the processed images into custom PyTorch `Dataset` classes.
+* Used `DataLoader` objects for efficient batching, shuffling, and parallel data loading.
+
+#### Model Training
+* Fine-tuned a pretrained Vision Transformer (ViT) model on the training dataset.
+* Leveraged pretrained weights to achieve strong performance on a relatively small dataset.
+
+#### Evaluation
+* Evaluated the model on the test set and printed sample predictions with confidence scores.
+* Demonstrated how the pretrained ViT benefits feature extraction even with limited training data.
+
+#### Note
+* Due to the large dataset size, the notebook kernel crashed repeatedly, preventing final accuracy results from being recorded (`data.ipynb`).
+
+
 ## References
 
 https://arxiv.org/pdf/2010.11929
