@@ -1,4 +1,11 @@
-# vignette-image-classification
+# Classical ML and Deep Learning for Image Classification
+
+This is a vignette on the application of classical machine learning methods (Support Vector Machines and XGBoost) and deep learning methods (Convolutional Neural Networks and Vision Transformers) for cat-vs-dog image classification; created as a class project for PSTAT 197A Fall 2025.
+
+Contributors: Alex Morifusa, Joy Chang, Cathy Fang, Anna Liang, Madhav Rao
+
+## Abstract
+
 
 ## Convolutional Neural Network (CNN)
 
@@ -22,17 +29,6 @@ We implemented an improved CNN architecture designed to capture hierarchical vis
     * Dogs: Higher Precision (0.82) — When the model predicts "Dog," it is more likely to be correct, though it misses some actual dogs (Recall 0.77).
 
 * Summary: Achieving ~80% accuracy in just 5 epochs highlights the efficiency of CNN for image tasks, though a ~20% error rate suggests there is still room for improvement compared to state-of-the-art Vision Transformers.
-# Classical ML and Deep Learning for Image Classification
-
-This is a vignette on the application of classical machine learning methods (Support Vector Machines and XGBoost) and deep learning methods (Convolutional Neural Networks and Vision Transformers) for cat-vs-dog image classification; created as a class project for PSTAT 197A Fall 2025.
-
-Contributors: Alex Morifusa, Joy Chang, Cathy Fang, Anna Liang, Madhav Rao
-
-## Abstract
-
-
-## Contents
-
 
 ## References
 
