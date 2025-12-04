@@ -5,6 +5,8 @@ This is a vignette on the application of classical machine learning methods (Sup
 Contributors: Alex Morifusa, Joy Chang, Cathy Fang, Anna Liang, Madhav Rao
 
 ## Abstract
+This vignette explores the progression from classical machine learning to deep learning for image classification using the Cats vs Dogs dataset from Kaggle. We start by building baseline models—SVM and XGBoost—trained on flattened image vectors. These baselines help show the limitations of classical ML when images are reduced to tabular form. We then introduce a Convolutional Neural Network (CNN), which uses the spatial structure of images, and briefly discuss Vision Transformers (ViT), which apply transformer architectures to sequences of image patches. Together, these models illustrate the evolution from traditional approaches to modern architectures, highlighting both the strengths and weaknesses of each in image classification tasks.
+
 
 ## Repository Contents
 - comparison_vignette.ipynb (or .qmd)
