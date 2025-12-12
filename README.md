@@ -9,29 +9,29 @@ This vignette explores the progression from classical machine learning to deep l
 
 
 ## Repository Contents
-- comparison_vignette.ipynb (or .qmd)
+- data_sample/
 
-    - The Main Tutorial Document. This is the primary file to read.
-
-    - It contains all written explanations, imports functions from scripts/, and loads saved results from results/ to generate plots instantly.
-
-- scripts/
-
-    - The Code Repository. Contains the functional, reusable Python files (.py) for all three models.
+    - Demo Dataset Location. This holds a very small set of images used specifically for quick demonstrations inside the main notebook.
 
 - data/
 
     - The Dataset Location. Contains the raw image files (e.g., train/).
 
-    - Note: This folder is included in .gitignore and is not committed to the repository due to file size limits. Users must run 01_download_data.py to populate it.
+    - Note: This folder is included in .gitignore and is not committed to the repository due to file size limits.
 
-- data_sample/
+- notebooks/
 
-    - Demo Dataset Location. This holds a very small set of images used specifically for quick demonstrations inside the main notebook.
+    - A directory reserved for draft notebooks.
 
-- img/
+- scripts/
 
-    - Contains images generated during the analysis.
+    - The Code Repository. Contains the functional, reusable Python files (.py) for the preprocessing functions and all three models.
+
+- vignette.ipynb
+
+    - The Main Tutorial Document. This is the primary file to read.
+
+    - It contains all written explanations and runnable codes for complete demonstrations and analysis of results
 
 
 ## References
