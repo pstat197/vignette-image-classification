@@ -39,3 +39,5 @@ This vignette explores the progression from classical machine learning to deep l
 https://arxiv.org/pdf/2010.11929
 
 https://ieeexplore.ieee.org/abstract/document/9736894
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
